@@ -29,13 +29,10 @@ namespace Properties
         }
 
         // TODO improve
-        public int GetDeckSize
-        {
-            get { return names.Length * seeds.Length; }
-        }
+        public int DeckSize => names.Length * seeds.Length;
 
         /// TODO improve
-        public ISet<Card> GetDeck
+        public ISet<Card> Deck
         {
             get
             {
