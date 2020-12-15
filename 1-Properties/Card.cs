@@ -28,38 +28,45 @@ namespace Properties
         /// Initializes a new instance of the <see cref="Card"/> class.
         /// </summary>
         /// <param name="tuple">the informations about the card as a tuple.</param>
-        internal Card(Tuple<string, string, int> tuple)
-            : this(tuple.Item1, tuple.Item2, tuple.Item3)
+        internal Card(Tuple<string, string, int> tuple) : this(tuple.Item1, tuple.Item2, tuple.Item3) { }
+
+        // TODO improve
+        public string GetSeed
         {
+            get { return seed; }
         }
 
         // TODO improve
-        public string GetSeed()
+        public string GetName
         {
-            return this.seed;
+            get { return name; }
         }
 
         // TODO improve
-        public string GetName()
+        public int GetOrdinal
         {
-            return this.name;
-        }
-
-        // TODO improve
-        public int GetOrdinal()
-        {
-            return this.ordinal;
+            get {return ordinal; }
         }
 
         /// <inheritdoc cref="object.ToString"/>
         public override string ToString()
         {
             // TODO understand string interpolation
-            return $"{this.GetType().Name}(Name={this.GetName()}, Seed={this.GetSeed()}, Ordinal={this.GetOrdinal()})";
+            return $"{GetType().Name}(Name={GetName}, Seed={GetSeed}, Ordinal={GetOrdinal})";
         }
 
         // TODO generate Equals(object obj)
-
+        public override bool Equals(object obj)
+        {
+            return obj is Card card &&
+                   seed == card.seed &&
+                   name == card.name &&
+                   ordinal == card.ordinal;
+        }
         // TODO generate GetHashCode()
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(seed, name, ordinal);
+        }
     }
 }
